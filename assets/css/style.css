@@ -166,40 +166,194 @@ button:hover {
 }
 
 
+/* ===============================
+   ROOT COLORS (Beige + Brown)
+   =============================== */
+:root {
+    --primary: #8A6A4F;
+    --secondary: #C8AD92;
+    --bg: #F6EFE8;
+    --card-bg: #FFFCF9;
+    --border: #E2D3C4;
+    --text-dark: #3E332B;
+    --text-soft: #6B5B4D;
+}
+
+/* ===============================
+   PAGE WRAPPER
+   =============================== */
 .search-recipe-page {
-    max-width: 1100px;
-    margin: 4rem auto;
+    max-width: 1300px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: var(--bg);
 }
 
-#search-container {
-    background: var(--bg-soft);
-    padding: 2.3rem;
-    border-radius: var(--radius-md);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.4rem;
-}
-
-
-#results {
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-    gap: 2.2rem;
-    list-style: none;
-}
-
-#results li {
-    background: var(--bg-panel);
-    padding: 2.2rem;
-    border-radius: var(--radius-md);
+/* ===============================
+   SEARCH CONTAINER (VERTICAL FEEL)
+   =============================== */
+.search-recipe-page #search-container {
+    background: linear-gradient(160deg, #FFF8F0, #F1E4D8);
+    padding: 2.5rem 3rem;
+    border-radius: 2.5rem;
     border: 1px solid var(--border);
-    transition: transform 0.3s ease;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    margin-bottom: 3rem;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-#results li:hover {
-    transform: translateY(-4px);
+.search-recipe-page #search-container:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 55px rgba(0,0,0,0.18);
 }
+
+/* ===============================
+   LABELS
+   =============================== */
+.search-recipe-page label,
+.add-recipe-page label {
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: var(--text-soft);
+}
+
+/* ===============================
+   INPUTS & SELECTS
+   =============================== */
+.search-recipe-page input,
+.search-recipe-page select {
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 1.6rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-recipe-page input::placeholder {
+    color: #9A8A7B;
+}
+
+.search-recipe-page input:focus,
+.search-recipe-page select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(138,106,79,0.25);
+}
+
+/* ===============================
+   HEADING
+   =============================== */
+.search-recipe-page h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--primary);
+    font-size: 2.3rem;
+    letter-spacing: 0.02em;
+}
+
+/* ===============================
+   RESULTS GRID
+   =============================== */
+.search-recipe-page #results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+/* ===============================
+   RESULT CARD (VERTICAL CARD)
+   =============================== */
+.search-recipe-page #results li {
+    background: var(--card-bg);
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    padding: 2.2rem 2rem;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    position: relative;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+/* Accent strip */
+.search-recipe-page #results li::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 6px;
+    height: calc(100% - 40px);
+    background: linear-gradient(180deg, var(--secondary), var(--primary));
+    border-radius: 6px;
+}
+
+/* Hover effect */
+.search-recipe-page #results li:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 28px 55px rgba(0,0,0,0.18);
+}
+
+/* ===============================
+   TEXT INSIDE CARD
+   =============================== */
+.search-recipe-page #results li strong {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.search-recipe-page #results li p,
+.search-recipe-page #results li span {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-soft);
+    margin-bottom: 0.35rem;
+}
+
+.search-recipe-page #results li b {
+    color: var(--primary);
+}
+
+/* ===============================
+   EMPTY RESULTS
+   =============================== */
+.search-recipe-page #results:empty::after {
+    content: "No recipes found. Try refining your search.";
+    display: block;
+    text-align: center;
+    color: var(--text-soft);
+    font-style: italic;
+    margin-top: 3rem;
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+@media (max-width: 900px) {
+    .search-recipe-page {
+        padding: 1.5rem;
+    }
+
+    .search-recipe-page #search-container {
+        padding: 2rem;
+    }
+
+    .search-recipe-page h2 {
+        font-size: 1.9rem;
+    }
+}
+
 
 
 
